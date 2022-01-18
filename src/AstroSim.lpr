@@ -12,7 +12,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  AstroSimMainForm;
+  AstroSimMainForm,
+  Asteroid;
 
 begin
   Randomize;

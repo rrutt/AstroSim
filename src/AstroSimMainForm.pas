@@ -13,10 +13,12 @@ type
   { TAstroSimMainForm }
 
   TAstroSimMainForm = class(TForm)
+    ButtonStep: TButton;
     ButtonResume: TButton;
     ButtonPause: TButton;
     ButtonStart: TButton;
     ButtonRandomize: TButton;
+    procedure ButtonRandomizeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   end;
 
@@ -46,5 +48,17 @@ implementation
 
     Space.Paint;
   end;
+
+procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
+begin
+  ButtonRandomize.Enabled := false;
+
+  Space.Randomize;
+  Space.Paint;
+
+  ButtonStart.Enabled := true;
+  ButtonStep.Enabled := true;
+end;
+
 end.
 

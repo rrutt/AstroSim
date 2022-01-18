@@ -23,6 +23,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    OnClick = ButtonRandomizeClick
     ParentFont = False
     TabOrder = 0
   end
@@ -63,12 +64,29 @@ object AstroSimMainForm: TAstroSimMainForm
     TabOrder = 2
   end
   object ButtonResume: TButton
-    Left = 464
+    Left = 608
     Height = 36
     Top = 648
     Width = 110
     Anchors = [akLeft, akBottom]
     Caption = 'Resume'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+  end
+  object ButtonStep: TButton
+    Left = 464
+    Height = 36
+    Top = 648
+    Width = 110
+    Caption = 'Step'
     Enabled = False
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack

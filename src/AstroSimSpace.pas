@@ -5,7 +5,8 @@ interface
 {$mode objfpc}{$H+}
 
 uses
-  Classes, SysUtils, Controls, Graphics, LCLType;
+  Classes, SysUtils, Controls, Graphics, LCLType,
+  Asteroid;
 
 //const
 
@@ -14,18 +15,39 @@ type
     private
     public
       procedure Initialize;
+      procedure Randomize;
       procedure EraseBackground({%H-}DC: HDC); override;
       procedure Paint; override;
   end;
 
 implementation
-  //const
+  const
+    ASTEROID_COUNT = 10;
 
-  //var
+  var
+    Asteroids: array[1..ASTEROID_COUNT] of TAsteroid;
+    ActiveAsteroidCount: Integer;
 
   procedure TAstroSimSpace.Initialize;
-  //var
+  var
+    i: Integer;
+    a: TAsteroid;
   begin
+    for i := 1 to ASTEROID_COUNT do begin
+      a := TAsteroid.Create;
+      Asteroids[i] := a;
+    end;
+    ActiveAsteroidCount := 0;
+  end;
+
+  procedure TAstroSimSpace.Randomize;
+  var
+    i: Integer;
+  begin
+    for i := 1 to ASTEROID_COUNT do begin
+      Asteroids[i].Randomize(Width, Height);
+    end;
+    ActiveAsteroidCount := ASTEROID_COUNT;
   end;
 
   procedure TAstroSimSpace.EraseBackground(DC: HDC);
@@ -36,6 +58,10 @@ implementation
 
   procedure TAstroSimSpace.Paint;
   var
+    i: Integer;
+    x: Integer;
+    y: Integer;
+    a: TAsteroid;
     Bitmap: TBitmap;
   begin
     Bitmap := TBitmap.Create;
@@ -45,17 +71,15 @@ implementation
       Bitmap.Height := Height;
       Bitmap.Width := Width;
 
-      Bitmap.Canvas.Brush.Color := clGray;
-      Bitmap.Canvas.FillRect(0, 0, Width, Height);
-
-      Bitmap.Canvas.Pen.Color := clWhite;
-      Bitmap.Canvas.Line(0, 0, Width, Height);
-
-      Bitmap.Canvas.Pen.Color := clBlack;
-      Bitmap.Canvas.Line(0, Height, Width, 0);
-
-      Bitmap.Canvas.Brush.Color := clRed;
-      Bitmap.Canvas.Ellipse(Width div 8, Height div 4, Width div 2, Height div 2);
+      Bitmap.Canvas.Brush.Color := clWhite;
+      for i := 1 to ActiveAsteroidCount do begin
+        a := Asteroids[i];
+        if (a.IsActive) then begin
+          x := Round(a.X);
+          y := Round(a.Y);
+          Bitmap.Canvas.Ellipse(x - a.Radius, y - a.Radius, x + a.Radius, y + a.Radius);
+        end;
+      end;
 
       Canvas.Draw(0, 0, Bitmap);
     finally
