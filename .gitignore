@@ -1,0 +1,10 @@
+
+backup/
+lib/
+
+*.exe
+*.res
+
+!bin/*.exe
+
+

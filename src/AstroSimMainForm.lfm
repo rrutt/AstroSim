@@ -1,0 +1,12 @@
+object AstroSimMainForm: TAstroSimMainForm
+  Left = 5
+  Height = 532
+  Top = 70
+  Width = 842
+  Caption = 'Astronomical Simulation'
+  ClientHeight = 532
+  ClientWidth = 842
+  OnCreate = FormCreate
+  LCLVersion = '2.0.10.0'
+  Visible = True
+end

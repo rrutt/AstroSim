@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="2">
+      <Unit0>
+        <Filename Value="AstroSim.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos Y="23"/>
+        <UsageCount Value="232"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AstroSimMainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos Y="16"/>
+        <UsageCount Value="232"/>
+        <Loaded Value="True"/>
+      </Unit1>
+    </Units>
+    <JumpHistory Count="2" HistoryIndex="1">
+      <Position1>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <Caret Line="31" Column="24"/>
+      </Position1>
+      <Position2>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <Caret Line="24" Column="3"/>
+      </Position2>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode="default"/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
