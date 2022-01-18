@@ -1,12 +1,83 @@
 object AstroSimMainForm: TAstroSimMainForm
   Left = 5
-  Height = 532
+  Height = 700
   Top = 70
-  Width = 842
+  Width = 1000
   Caption = 'Astronomical Simulation'
-  ClientHeight = 532
-  ClientWidth = 842
+  ClientHeight = 700
+  ClientWidth = 1000
   OnCreate = FormCreate
   LCLVersion = '2.0.10.0'
   Visible = True
+  object ButtonRandomize: TButton
+    Left = 16
+    Height = 36
+    Top = 648
+    Width = 110
+    Anchors = [akLeft, akBottom]
+    Caption = 'Randomize'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ButtonStart: TButton
+    Left = 161
+    Height = 36
+    Top = 648
+    Width = 110
+    Anchors = [akLeft, akBottom]
+    Caption = 'Start'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
+  object ButtonPause: TButton
+    Left = 312
+    Height = 36
+    Top = 648
+    Width = 110
+    Anchors = [akLeft, akBottom]
+    Caption = 'Pause'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object ButtonResume: TButton
+    Left = 464
+    Height = 36
+    Top = 648
+    Width = 110
+    Anchors = [akLeft, akBottom]
+    Caption = 'Resume'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+  end
 end
