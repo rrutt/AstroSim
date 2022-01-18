@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="AstroSim.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -18,14 +18,24 @@
         <ComponentName Value="AstroSimMainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos Y="16"/>
+        <TopLine Value="10"/>
+        <CursorPos X="59" Y="23"/>
         <UsageCount Value="232"/>
         <Loaded Value="True"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="AstroSimSpace.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="36"/>
+        <CursorPos X="41" Y="58"/>
+        <UsageCount Value="225"/>
+        <Loaded Value="True"/>
+      </Unit2>
     </Units>
-    <JumpHistory Count="2" HistoryIndex="1">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="AstroSimMainForm.pas"/>
         <Caret Line="31" Column="24"/>
@@ -34,6 +44,30 @@
         <Filename Value="AstroSimMainForm.pas"/>
         <Caret Line="24" Column="3"/>
       </Position2>
+      <Position3>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <Caret Line="38" Column="44" TopLine="9"/>
+      </Position3>
+      <Position4>
+        <Filename Value="AstroSimSpace.pas"/>
+        <Caret Line="10" Column="8"/>
+      </Position4>
+      <Position5>
+        <Filename Value="AstroSimSpace.pas"/>
+        <Caret Line="22" Column="11" TopLine="8"/>
+      </Position5>
+      <Position6>
+        <Filename Value="AstroSimSpace.pas"/>
+        <Caret Line="24" Column="10" TopLine="10"/>
+      </Position6>
+      <Position7>
+        <Filename Value="AstroSimSpace.pas"/>
+        <Caret Line="62" TopLine="31"/>
+      </Position7>
+      <Position8>
+        <Filename Value="AstroSimSpace.pas"/>
+        <Caret Line="57" Column="59" TopLine="32"/>
+      </Position8>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
