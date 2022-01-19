@@ -22,7 +22,7 @@ type
       AccelerationY: Single;
 
       procedure Randomize(const MaxX: Integer; const MaxY: Integer);
-      function IsAdjacent(const OtherAsteroid: TAsteroid; out NormalX: Single; out NormalY: Single; out DistanceSquared: Single): Boolean;
+      procedure MergeIfAdjacent(const OtherAsteroid: TAsteroid);
       procedure Accelerate(const OtherAsteroid: TAsteroid);
       procedure Move;
   end;
@@ -50,41 +50,64 @@ implementation
     AccelerationY := 0.0;
   end;
 
-  function TAsteroid.IsAdjacent(const OtherAsteroid: TAsteroid; out NormalX: Single; out NormalY: Single; out DistanceSquared: Single): Boolean;
+  procedure TAsteroid.MergeIfAdjacent(const OtherAsteroid: TAsteroid);
   var
     dx: Single;
     dy: Single;
-    magnitude: Single;
+    distanceSquared: Single;
     r: Single;
-    r2: Single;
+    rSquared: Single;
+    isAdjacent: Boolean;
   begin
     dx := OtherAsteroid.X - X;
     dy := OtherAsteroid.Y - Y;
-    DistanceSquared := (dx * dx) + (dy * dy);
-
-    magnitude := Sqrt(DistanceSquared);
-    NormalX := dx / magnitude;
-    NormalY := dy / magnitude;
+    distanceSquared := (dx * dx) + (dy * dy);
 
     r := Radius + OtherAsteroid.Radius;
-    r2 := (r * r);
+    rSquared := (r * r);
 
-    Result := (DistanceSquared <= r2);
+    isAdjacent := (distanceSquared <= rSquared);
+    if (isAdjacent) then begin
+      X := (X + OtherAsteroid.X) / 2;
+      Y := (Y + OtherAsteroid.Y) / 2;
+
+      // Combine momentum = Mass * Velocity.
+      VelocityX := (VelocityX * Mass) + (OtherAsteroid.VelocityX * OtherAsteroid.Mass);
+      VelocityY := (VelocityY * Mass) + (OtherAsteroid.VelocityY * OtherAsteroid.Mass);
+
+      Mass := Mass + OtherAsteroid.Mass;
+
+      VelocityX := VelocityX / Mass;
+      VelocityY := VelocityY / Mass;
+
+      Radius := Round(Sqrt(Mass) + 0.5);
+
+      OtherAsteroid.IsActive := false;
+    end;
   end;
 
   procedure TAsteroid.Accelerate(const OtherAsteroid: TAsteroid);
   var
-    nx: Single;
-    ny: Single;
-    d2: Single;
-    a: Single;
+    dx: Single;
+    dy: Single;
+    distanceSquared: Single;
+    accelerationMagnitude: Single;
+    distanceMagnitude: Single;
+    dxNormalized: Single;
+    dyNormalized: Single;
   begin
-    if (not IsAdjacent(OtherAsteroid, nx, ny, d2)) then begin
-      a := (GRAVITY * OtherAsteroid.Mass) / d2;
+    dx := OtherAsteroid.X - X;
+    dy := OtherAsteroid.Y - Y;
+    distanceSquared := (dx * dx) + (dy * dy);
 
-      AccelerationX := AccelerationX + (a * nx);
-      AccelerationY := AccelerationY + (a * ny);
-    end;
+    distanceMagnitude := Sqrt(DistanceSquared);
+    dxNormalized := dx / distanceMagnitude;
+    dyNormalized := dy / distanceMagnitude;
+
+    accelerationMagnitude := (GRAVITY * OtherAsteroid.Mass) / distanceSquared;
+
+    AccelerationX := AccelerationX + (accelerationMagnitude * dxNormalized);
+    AccelerationY := AccelerationY + (accelerationMagnitude * dyNormalized);
   end;
 
   procedure TAsteroid.Move;
