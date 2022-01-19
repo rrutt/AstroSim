@@ -19,6 +19,7 @@ type
     ButtonStart: TButton;
     ButtonRandomize: TButton;
     procedure ButtonRandomizeClick(Sender: TObject);
+    procedure ButtonStepClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   end;
 
@@ -58,6 +59,12 @@ begin
 
   ButtonStart.Enabled := true;
   ButtonStep.Enabled := true;
+end;
+
+procedure TAstroSimMainForm.ButtonStepClick(Sender: TObject);
+begin
+  Space.Iterate;
+  Space.Paint;
 end;
 
 end.

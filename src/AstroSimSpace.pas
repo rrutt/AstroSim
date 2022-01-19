@@ -16,6 +16,7 @@ type
     public
       procedure Initialize;
       procedure Randomize;
+      procedure Iterate;
       procedure EraseBackground({%H-}DC: HDC); override;
       procedure Paint; override;
   end;
@@ -48,6 +49,36 @@ implementation
       Asteroids[i].Randomize(Width, Height);
     end;
     ActiveAsteroidCount := ASTEROID_COUNT;
+  end;
+
+  procedure TAstroSimSpace.Iterate;
+  var
+    i: Integer;
+    j: Integer;
+    ai: TAsteroid;
+    aj: TAsteroid;
+  begin
+    for i := 1 to ActiveAsteroidCount do begin
+      ai := Asteroids[i];
+      if (ai.IsActive) then begin
+        ai.AccelerationX := 0.0;
+        ai.AccelerationY := 0.0;
+
+        for j := 1 to ActiveAsteroidCount do begin
+          aj := Asteroids[j];
+          if ((i <> j) and aj.IsActive) then begin
+            ai.Accelerate(aj);
+          end;
+        end;
+      end;
+    end;
+
+    for i := 1 to ActiveAsteroidCount do begin
+      ai := Asteroids[i];
+      if (ai.IsActive) then begin
+        ai.Move;
+      end;
+    end;
   end;
 
   procedure TAstroSimSpace.EraseBackground(DC: HDC);

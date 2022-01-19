@@ -95,6 +95,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    OnClick = ButtonStepClick
     ParentFont = False
     TabOrder = 3
   end
