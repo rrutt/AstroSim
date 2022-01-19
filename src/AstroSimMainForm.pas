@@ -67,6 +67,7 @@ end;
 procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
 begin
   ButtonRandomize.Enabled := false;
+  ButtonResume.Enabled := false;
 
   Space.Randomize;
   Space.Paint;

@@ -58,6 +58,8 @@ implementation
     ai: TAsteroid;
     aj: TAsteroid;
   begin
+    { TODO : Add loop to merge adjacent asteroids. }
+
     for i := 1 to ActiveAsteroidCount do begin
       ai := Asteroids[i];
       if (ai.IsActive) then begin

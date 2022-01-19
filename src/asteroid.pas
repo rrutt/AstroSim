@@ -5,7 +5,7 @@ unit Asteroid;
 interface
 
 uses
-  Classes, SysUtils, Math;
+  Classes, SysUtils;
 
 type
   TAsteroid = Class
@@ -22,7 +22,7 @@ type
       AccelerationY: Single;
 
       procedure Randomize(const MaxX: Integer; const MaxY: Integer);
-      function IsAdjacent(const OtherAsteroid: TAsteroid; out DistanceX: Single; out DistanceY: Single; out DistanceSquared: Single): Boolean;
+      function IsAdjacent(const OtherAsteroid: TAsteroid; out NormalX: Single; out NormalY: Single; out DistanceSquared: Single): Boolean;
       procedure Accelerate(const OtherAsteroid: TAsteroid);
       procedure Move;
   end;
@@ -50,30 +50,40 @@ implementation
     AccelerationY := 0.0;
   end;
 
-  function TAsteroid.IsAdjacent(const OtherAsteroid: TAsteroid; out DistanceX: Single; out DistanceY: Single; out DistanceSquared: Single): Boolean;
+  function TAsteroid.IsAdjacent(const OtherAsteroid: TAsteroid; out NormalX: Single; out NormalY: Single; out DistanceSquared: Single): Boolean;
   var
+    dx: Single;
+    dy: Single;
+    magnitude: Single;
     r: Single;
     r2: Single;
   begin
-    DistanceX := OtherAsteroid.X - X;
-    DistanceY := OtherAsteroid.Y - Y;
-    DistanceSquared := (DistanceX * DistanceX) + (DistanceY * DistanceY);
+    dx := OtherAsteroid.X - X;
+    dy := OtherAsteroid.Y - Y;
+    DistanceSquared := (dx * dx) + (dy * dy);
+
+    magnitude := Sqrt(DistanceSquared);
+    NormalX := dx / magnitude;
+    NormalY := dy / magnitude;
+
     r := Radius + OtherAsteroid.Radius;
     r2 := (r * r);
+
     Result := (DistanceSquared <= r2);
   end;
 
   procedure TAsteroid.Accelerate(const OtherAsteroid: TAsteroid);
   var
-    dx: Single;
-    dy: Single;
+    nx: Single;
+    ny: Single;
     d2: Single;
     a: Single;
   begin
-    if (not IsAdjacent(OtherAsteroid, dx, dy, d2)) then begin
+    if (not IsAdjacent(OtherAsteroid, nx, ny, d2)) then begin
       a := (GRAVITY * OtherAsteroid.Mass) / d2;
-      AccelerationX := AccelerationX + (a * Sign(dx));
-      AccelerationY := AccelerationY + (a * Sign(dy));
+
+      AccelerationX := AccelerationX + (a * nx);
+      AccelerationY := AccelerationY + (a * ny);
     end;
   end;
 
