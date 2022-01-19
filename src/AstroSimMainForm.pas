@@ -28,6 +28,7 @@ type
     procedure ButtonStepClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure ResizeSpace;
   end;
 
   var
@@ -41,35 +42,48 @@ implementation
     Space: TAstroSimSpace;
     //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
 
-  procedure TAstroSimMainForm.FormCreate(Sender: TObject);
-  const
-    BORDER_SIZE = 10;
-  begin
-    Timer1.Interval := 10; // milliseconds
-    Timer1.Enabled := false;
+procedure TAstroSimMainForm.FormCreate(Sender: TObject);
+begin
+  Timer1.Interval := 10; // milliseconds
+  Timer1.Enabled := false;
 
-    Space := TAstroSimSpace.Create(Self);
-    Space.Top := BORDER_SIZE;
-    Space.Left := BORDER_SIZE;
-    Space.Width := Self.Width - (2 * BORDER_SIZE);
-    Space.Height := ButtonRandomize.Top - (2 * BORDER_SIZE);
-    Space.Parent := Self;
-    Space.Initialize;
-    Space.DoubleBuffered := True;
+  ResizeSpace;
+end;
 
-    Space.Paint;
-  end;
+procedure TAstroSimMainForm.ResizeSpace;
+const
+  BORDER_SIZE = 10;
+begin
+  Space := TAstroSimSpace.Create(Self);
+  Space.Top := BORDER_SIZE;
+  Space.Left := BORDER_SIZE;
+  Space.Width := Self.Width - (2 * BORDER_SIZE);
+  Space.Height := ButtonRandomize.Top - (2 * BORDER_SIZE);
+  Space.Parent := Self;
+  Space.Initialize;
+  Space.DoubleBuffered := True;
+
+  Space.Paint;
+end;
 
 procedure TAstroSimMainForm.Timer1Timer(Sender: TObject);
 begin
+  // Disable the timer to avoid double fire during extended iteration processing.
+  Timer1.Enabled := false;
+
   Space.Iterate;
   Space.Paint;
+
+  // Reenable the timer.
+  Timer1.Enabled := true;
 end;
 
 procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
 begin
   ButtonRandomize.Enabled := false;
   ButtonResume.Enabled := false;
+
+  ResizeSpace;
 
   Space.Randomize;
   Space.Paint;

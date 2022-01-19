@@ -89,6 +89,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Height = 36
     Top = 648
     Width = 110
+    Anchors = [akLeft, akBottom]
     Caption = 'Step'
     Enabled = False
     Font.CharSet = ANSI_CHARSET
