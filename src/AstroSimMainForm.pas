@@ -18,9 +18,14 @@ type
     ButtonPause: TButton;
     ButtonStart: TButton;
     ButtonRandomize: TButton;
+    Timer1: TTimer;
+    procedure ButtonPauseClick(Sender: TObject);
     procedure ButtonRandomizeClick(Sender: TObject);
+    procedure ButtonResumeClick(Sender: TObject);
+    procedure ButtonStartClick(Sender: TObject);
     procedure ButtonStepClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   end;
 
   var
@@ -38,6 +43,9 @@ implementation
   const
     BORDER_SIZE = 10;
   begin
+    Timer1.Interval := 10; // milliseconds
+    Timer1.Enabled := false;
+
     Space := TAstroSimSpace.Create(Self);
     Space.Top := BORDER_SIZE;
     Space.Left := BORDER_SIZE;
@@ -50,6 +58,12 @@ implementation
     Space.Paint;
   end;
 
+procedure TAstroSimMainForm.Timer1Timer(Sender: TObject);
+begin
+  Space.Iterate;
+  Space.Paint;
+end;
+
 procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
 begin
   ButtonRandomize.Enabled := false;
@@ -59,6 +73,39 @@ begin
 
   ButtonStart.Enabled := true;
   ButtonStep.Enabled := true;
+end;
+
+procedure TAstroSimMainForm.ButtonResumeClick(Sender: TObject);
+begin
+  ButtonResume.Enabled := false;
+  ButtonRandomize.Enabled := false;
+  ButtonStep.Enabled := false;
+
+  Timer1.Enabled := true;
+
+  ButtonPause.Enabled := true;
+end;
+
+procedure TAstroSimMainForm.ButtonPauseClick(Sender: TObject);
+begin
+  ButtonPause.Enabled := false;
+
+  Timer1.Enabled := false;
+
+  ButtonRandomize.Enabled := true;
+  ButtonStep.Enabled := true;
+  ButtonResume.Enabled := true;
+end;
+
+procedure TAstroSimMainForm.ButtonStartClick(Sender: TObject);
+begin
+  ButtonStart.Enabled := false;
+  ButtonRandomize.Enabled := false;
+  ButtonStep.Enabled := false;
+
+  Timer1.Enabled := true;
+
+  ButtonPause.Enabled := true;
 end;
 
 procedure TAstroSimMainForm.ButtonStepClick(Sender: TObject);

@@ -1,7 +1,7 @@
 object AstroSimMainForm: TAstroSimMainForm
-  Left = 5
+  Left = 9
   Height = 700
-  Top = 70
+  Top = 69
   Width = 1000
   Caption = 'Astronomical Simulation'
   ClientHeight = 700
@@ -28,7 +28,7 @@ object AstroSimMainForm: TAstroSimMainForm
     TabOrder = 0
   end
   object ButtonStart: TButton
-    Left = 161
+    Left = 160
     Height = 36
     Top = 648
     Width = 110
@@ -42,6 +42,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    OnClick = ButtonStartClick
     ParentFont = False
     TabOrder = 1
   end
@@ -60,6 +61,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    OnClick = ButtonPauseClick
     ParentFont = False
     TabOrder = 2
   end
@@ -78,6 +80,7 @@ object AstroSimMainForm: TAstroSimMainForm
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    OnClick = ButtonResumeClick
     ParentFont = False
     TabOrder = 4
   end
@@ -98,5 +101,10 @@ object AstroSimMainForm: TAstroSimMainForm
     OnClick = ButtonStepClick
     ParentFont = False
     TabOrder = 3
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 785
+    Top = 645
   end
 end
