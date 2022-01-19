@@ -8,7 +8,9 @@ uses
   Classes, SysUtils, Controls, Graphics, LCLType,
   Asteroid;
 
-//const
+const
+  MAXIMUM_ASTEROID_COUNT = 1000;
+  DEFAULT_ASTEROID_COUNT = 100;
 
 type
   TAstroSimSpace = class(TCustomControl)
@@ -26,8 +28,6 @@ type
   end;
 
 implementation
-  const
-    MAXIMUM_ASTEROID_COUNT = 1000;
 
   var
     Asteroids: array[1..MAXIMUM_ASTEROID_COUNT] of TAsteroid;
