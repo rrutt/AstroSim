@@ -25,7 +25,7 @@ type
 
 implementation
   const
-    ASTEROID_COUNT = 10;
+    ASTEROID_COUNT = 500;
 
   var
     Asteroids: array[1..ASTEROID_COUNT] of TAsteroid;
