@@ -14,6 +14,8 @@ type
   TAstroSimSpace = class(TCustomControl)
     private
     public
+      ActiveAsteroidCount: Integer;
+
       procedure Initialize;
       procedure Randomize;
       procedure Iterate;
@@ -27,7 +29,6 @@ implementation
 
   var
     Asteroids: array[1..ASTEROID_COUNT] of TAsteroid;
-    ActiveAsteroidCount: Integer;
 
   procedure TAstroSimSpace.Initialize;
   var
@@ -58,25 +59,27 @@ implementation
     ai: TAsteroid;
     aj: TAsteroid;
   begin
-    for i := 1 to ActiveAsteroidCount do begin
+    for i := 1 to ASTEROID_COUNT do begin
       ai := Asteroids[i];
       if (ai.IsActive) then begin
-        for j := 1 to ActiveAsteroidCount do begin
+        for j := 1 to ASTEROID_COUNT do begin
           aj := Asteroids[j];
           if ((i <> j) and aj.IsActive) then begin
-            ai.MergeIfAdjacent(aj);
+            if (ai.MergeIfAdjacent(aj)) then begin
+              Dec(ActiveAsteroidCount);
+            end;
           end;
         end;
       end;
     end;
 
-    for i := 1 to ActiveAsteroidCount do begin
+    for i := 1 to ASTEROID_COUNT do begin
       ai := Asteroids[i];
       if (ai.IsActive) then begin
         ai.AccelerationX := 0.0;
         ai.AccelerationY := 0.0;
 
-        for j := 1 to ActiveAsteroidCount do begin
+        for j := 1 to ASTEROID_COUNT do begin
           aj := Asteroids[j];
           if ((i <> j) and aj.IsActive) then begin
             ai.Accelerate(aj);
@@ -85,7 +88,7 @@ implementation
       end;
     end;
 
-    for i := 1 to ActiveAsteroidCount do begin
+    for i := 1 to ASTEROID_COUNT do begin
       ai := Asteroids[i];
       if (ai.IsActive) then begin
         ai.Move;
@@ -115,7 +118,7 @@ implementation
       Bitmap.Width := Width;
 
       Bitmap.Canvas.Brush.Color := clWhite;
-      for i := 1 to ActiveAsteroidCount do begin
+      for i := 1 to ASTEROID_COUNT do begin
         a := Asteroids[i];
         if (a.IsActive) then begin
           x := Round(a.X);

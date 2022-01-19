@@ -4,6 +4,8 @@ unit AstroSimMainForm;
 
 interface
 
+{ TODO : Show Space.ActiveAsteroidCount as label on main form. }
+
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   AstroSimSpace;
