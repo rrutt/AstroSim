@@ -4,8 +4,6 @@ unit AstroSimMainForm;
 
 interface
 
-{ TODO : Show Space.ActiveAsteroidCount as label on main form. }
-
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   AstroSimSpace;
@@ -20,6 +18,8 @@ type
     ButtonPause: TButton;
     ButtonStart: TButton;
     ButtonRandomize: TButton;
+    Label1: TLabel;
+    LabelAsteroidCount: TLabel;
     Timer1: TTimer;
     procedure ButtonPauseClick(Sender: TObject);
     procedure ButtonRandomizeClick(Sender: TObject);
@@ -48,6 +48,8 @@ begin
   Timer1.Enabled := false;
 
   ResizeSpace;
+
+  LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
 end;
 
 procedure TAstroSimMainForm.ResizeSpace;
@@ -74,8 +76,12 @@ begin
   Space.Iterate;
   Space.Paint;
 
-  // Reenable the timer.
-  Timer1.Enabled := true;
+  LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
+
+  // Reenable the timer if more than one asteroid remains.
+  if (Space.ActiveAsteroidCount > 1) then begin
+    Timer1.Enabled := true;
+  end;
 end;
 
 procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
@@ -87,6 +93,8 @@ begin
 
   Space.Randomize;
   Space.Paint;
+
+  LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
 
   ButtonStart.Enabled := true;
   ButtonStep.Enabled := true;
