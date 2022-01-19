@@ -5,8 +5,8 @@ unit AstroSimMainForm;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  AstroSimSpace;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls, Spin, AstroSimSpace;
 
 type
 
@@ -20,6 +20,7 @@ type
     ButtonRandomize: TButton;
     Label1: TLabel;
     LabelAsteroidCount: TLabel;
+    SpinEditAsteroidCount: TSpinEdit;
     Timer1: TTimer;
     procedure ButtonPauseClick(Sender: TObject);
     procedure ButtonRandomizeClick(Sender: TObject);
@@ -91,7 +92,7 @@ begin
 
   ResizeSpace;
 
-  Space.Randomize;
+  Space.Randomize(SpinEditAsteroidCount.Value);
   Space.Paint;
 
   LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);

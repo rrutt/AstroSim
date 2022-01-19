@@ -14,7 +14,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="103"/>
+      <BuildNr Value="104"/>
       <CharSet Value="04E6"/>
       <StringTable Comments="MIT License.  https://opensource.org/licenses/MIT" CompanyName="Rick Rutt" FileDescription="Astronomical Simulation" LegalCopyright="Copyright 2022 Rick Rutt" ProductName="Astronomical Simulation"/>
     </VersionInfo>
