@@ -18,7 +18,7 @@ Alternately some or most of the asteroids may be _ejected_ via a _gravitational 
 
 The software is a self-contained executable program, written in **[Free Pascal](https://www.freepascal.org/)**, that runs on Microsoft Windows.
 (No separate run-time environment is required to run the program.)
-The **[Lazarus Integrated Development Environment](https://www.lazarus-ide.org/)** was used to develop the Horse Race Game.
+The **[Lazarus Integrated Development Environment](https://www.lazarus-ide.org/)** was used to develop the program.
 (Both Free Pascal and the Lazarus IDE are free open-source software products.) 
 
 ## Downloading the Program
