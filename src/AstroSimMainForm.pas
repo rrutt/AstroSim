@@ -46,8 +46,8 @@ begin
   Timer1.Interval := 10; // milliseconds
   Timer1.Enabled := false;
 
-  SpinEditAsteroidCount.MinValue := 10;
-  SpinEditAsteroidCount.Increment := 10;
+  SpinEditAsteroidCount.MinValue := 5;
+  SpinEditAsteroidCount.Increment := 5;
   SpinEditAsteroidCount.MaxValue := MAXIMUM_ASTEROID_COUNT;
   SpinEditAsteroidCount.Value := DEFAULT_ASTEROID_COUNT;
 

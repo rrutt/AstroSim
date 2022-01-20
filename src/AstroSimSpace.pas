@@ -9,8 +9,8 @@ uses
   Asteroid;
 
 const
-  MAXIMUM_ASTEROID_COUNT = 1000;
-  DEFAULT_ASTEROID_COUNT = 100;
+  MAXIMUM_ASTEROID_COUNT = 10000;
+  DEFAULT_ASTEROID_COUNT = 10;
 
 type
   TAstroSimSpace = class(TCustomControl)
