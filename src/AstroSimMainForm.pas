@@ -14,7 +14,6 @@ type
 
   TAstroSimMainForm = class(TForm)
     ButtonStep: TButton;
-    ButtonResume: TButton;
     ButtonPause: TButton;
     ButtonStart: TButton;
     ButtonRandomize: TButton;
@@ -24,7 +23,6 @@ type
     Timer1: TTimer;
     procedure ButtonPauseClick(Sender: TObject);
     procedure ButtonRandomizeClick(Sender: TObject);
-    procedure ButtonResumeClick(Sender: TObject);
     procedure ButtonStartClick(Sender: TObject);
     procedure ButtonStepClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -63,10 +61,10 @@ const
   BORDER_SIZE = 10;
 begin
   Space := TAstroSimSpace.Create(Self);
-  Space.Top := BORDER_SIZE;
+  Space.Top := ButtonRandomize.Top + ButtonRandomize.Height + BORDER_SIZE;
   Space.Left := BORDER_SIZE;
   Space.Width := Self.Width - (2 * BORDER_SIZE);
-  Space.Height := ButtonRandomize.Top - (2 * BORDER_SIZE);
+  Space.Height := Self.Height - (ButtonRandomize.Top + ButtonRandomize.Height + (2 * BORDER_SIZE));
   Space.Parent := Self;
   Space.Initialize;
   Space.DoubleBuffered := True;
@@ -93,7 +91,6 @@ end;
 procedure TAstroSimMainForm.ButtonRandomizeClick(Sender: TObject);
 begin
   ButtonRandomize.Enabled := false;
-  ButtonResume.Enabled := false;
 
   ResizeSpace;
 
@@ -102,19 +99,9 @@ begin
 
   LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
 
+  ButtonRandomize.Enabled := true;
   ButtonStart.Enabled := true;
   ButtonStep.Enabled := true;
-end;
-
-procedure TAstroSimMainForm.ButtonResumeClick(Sender: TObject);
-begin
-  ButtonResume.Enabled := false;
-  ButtonRandomize.Enabled := false;
-  ButtonStep.Enabled := false;
-
-  Timer1.Enabled := true;
-
-  ButtonPause.Enabled := true;
 end;
 
 procedure TAstroSimMainForm.ButtonPauseClick(Sender: TObject);
@@ -124,8 +111,8 @@ begin
   Timer1.Enabled := false;
 
   ButtonRandomize.Enabled := true;
+  ButtonStart.Enabled := true;
   ButtonStep.Enabled := true;
-  ButtonResume.Enabled := true;
 end;
 
 procedure TAstroSimMainForm.ButtonStartClick(Sender: TObject);
