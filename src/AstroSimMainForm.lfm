@@ -1,12 +1,133 @@
 object AstroSimMainForm: TAstroSimMainForm
-  Left = 5
-  Height = 532
-  Top = 70
-  Width = 842
+  Left = 59
+  Height = 550
+  Top = 55
+  Width = 750
   Caption = 'Astronomical Simulation'
-  ClientHeight = 532
-  ClientWidth = 842
+  ClientHeight = 550
+  ClientWidth = 750
   OnCreate = FormCreate
   LCLVersion = '2.0.10.0'
   Visible = True
+  object ButtonRandomize: TButton
+    Left = 8
+    Height = 36
+    Top = 8
+    Width = 110
+    Caption = 'Randomize'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = ButtonRandomizeClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ButtonStart: TButton
+    Left = 128
+    Height = 36
+    Top = 8
+    Width = 110
+    Caption = 'Start'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = ButtonStartClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object ButtonPause: TButton
+    Left = 248
+    Height = 36
+    Top = 8
+    Width = 110
+    Caption = 'Pause'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = ButtonPauseClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object ButtonStep: TButton
+    Left = 368
+    Height = 36
+    Top = 8
+    Width = 110
+    Caption = 'Step'
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = ButtonStepClick
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 488
+    Height = 20
+    Top = 8
+    Width = 84
+    Caption = '# Asteroids:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LabelAsteroidCount: TLabel
+    Left = 664
+    Height = 20
+    Top = 8
+    Width = 139
+    Caption = 'LabelAsteroidCount'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object SpinEditAsteroidCount: TSpinEdit
+    Left = 576
+    Height = 28
+    Hint = 'Initial Asteroid Count'
+    Top = 8
+    Width = 72
+    Alignment = taCenter
+    Increment = 10
+    MaxValue = 1000
+    MinValue = 10
+    TabOrder = 4
+    Value = 10
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 24
+    Top = 48
+  end
 end
