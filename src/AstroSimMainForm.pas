@@ -51,6 +51,7 @@ begin
   SpinEditAsteroidCount.MaxValue := MAXIMUM_ASTEROID_COUNT;
   SpinEditAsteroidCount.Value := DEFAULT_ASTEROID_COUNT;
 
+  Space := TAstroSimSpace.Create(Self);
   ResizeSpace;
 
   LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
@@ -60,7 +61,6 @@ procedure TAstroSimMainForm.ResizeSpace;
 const
   BORDER_SIZE = 10;
 begin
-  Space := TAstroSimSpace.Create(Self);
   Space.Top := ButtonRandomize.Top + ButtonRandomize.Height + BORDER_SIZE;
   Space.Left := BORDER_SIZE;
   Space.Width := Self.Width - (2 * BORDER_SIZE);

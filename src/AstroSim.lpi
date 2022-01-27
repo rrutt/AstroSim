@@ -14,9 +14,10 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="121"/>
+      <MinorVersionNr Value="1"/>
+      <BuildNr Value="21"/>
       <CharSet Value="04E6"/>
-      <StringTable Comments="MIT License.  https://opensource.org/licenses/MIT" CompanyName="Rick Rutt" FileDescription="Astronomical Simulation" LegalCopyright="Copyright 2022 Rick Rutt" ProductName="Astronomical Simulation" ProductVersion="1.0.0+20220120"/>
+      <StringTable Comments="MIT License.  https://opensource.org/licenses/MIT" CompanyName="Rick Rutt" FileDescription="Astronomical Simulation" LegalCopyright="Copyright 2022 Rick Rutt" ProductName="Astronomical Simulation" ProductVersion="1.1.0+20220126"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -52,9 +53,8 @@
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="asteroid.pas"/>
+        <Filename Value="Asteroid.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Asteroid"/>
       </Unit3>
     </Units>
   </ProjectOptions>
