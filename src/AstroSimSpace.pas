@@ -25,6 +25,8 @@ type
       procedure Iterate;
       procedure EraseBackground({%H-}DC: HDC); override;
       procedure Paint; override;
+      procedure MouseDown(Sender: TObject; {%H-}Button: TMouseButton;
+        {%H-}Shift: TShiftState; X, Y: Integer); overload;
   end;
 
 implementation
@@ -45,6 +47,8 @@ implementation
     end;
 
     ActiveAsteroidCount := 0;
+
+    OnMouseDown := @MouseDown;
   end;
 
   procedure TAstroSimSpace.Randomize(const AsteroidCount: Integer);
@@ -141,6 +145,35 @@ implementation
     end;
 
     inherited Paint;
+  end;
+
+  procedure TAstroSimSpace.MouseDown(Sender: TObject;
+    Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+  var
+    centerX: Integer;
+    centerY: Integer;
+    offsetX: Integer;
+    offsetY: Integer;
+    i: Integer;
+    a: TAsteroid;
+  begin
+    { Re-center the space on the clicked point. }
+
+    centerX := Width div 2;
+    centerY := Height div 2;
+
+    offsetX := centerX - X;
+    offsetY := centerY - Y;
+
+    for i := 1 to InitialAsteroidCount do begin
+      a := Asteroids[i];
+      if (a.IsActive) then begin
+        a.X := a.X + offsetX;
+        a.Y := a.Y + offsetY;
+      end;
+    end;
+
+    Paint;
   end;
 
 begin
