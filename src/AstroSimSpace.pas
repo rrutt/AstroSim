@@ -16,6 +16,8 @@ type
   TAstroSimSpace = class(TCustomControl)
     private
       InitialAsteroidCount: Integer;
+      ViewOffsetX: Integer;
+      ViewOffsetY: Integer;
 
     public
       ActiveAsteroidCount: Integer;
@@ -41,6 +43,9 @@ implementation
   begin
     InitialAsteroidCount := MAXIMUM_ASTEROID_COUNT;
 
+    ViewOffsetX := 0;
+    ViewOffsetY := 0;
+
     for i := 1 to MAXIMUM_ASTEROID_COUNT do begin
       a := TAsteroid.Create;
       Asteroids[i] := a;
@@ -56,6 +61,9 @@ implementation
     i: Integer;
   begin
     InitialAsteroidCount := AsteroidCount;
+
+    ViewOffsetX := 0;
+    ViewOffsetY := 0;
 
     for i := 1 to InitialAsteroidCount do begin
       Asteroids[i].Randomize(Width, Height);
@@ -133,8 +141,8 @@ implementation
       for i := 1 to InitialAsteroidCount do begin
         a := Asteroids[i];
         if (a.IsActive) then begin
-          x := Round(a.X);
-          y := Round(a.Y);
+          x := Round(a.X) + ViewOffsetX;
+          y := Round(a.Y) + ViewOffsetY;
           Bitmap.Canvas.Ellipse(x - a.Radius, y - a.Radius, x + a.Radius, y + a.Radius);
         end;
       end;
@@ -154,8 +162,6 @@ implementation
     centerY: Integer;
     offsetX: Integer;
     offsetY: Integer;
-    i: Integer;
-    a: TAsteroid;
   begin
     { Re-center the space on the clicked point. }
 
@@ -165,13 +171,8 @@ implementation
     offsetX := centerX - X;
     offsetY := centerY - Y;
 
-    for i := 1 to InitialAsteroidCount do begin
-      a := Asteroids[i];
-      if (a.IsActive) then begin
-        a.X := a.X + offsetX;
-        a.Y := a.Y + offsetY;
-      end;
-    end;
+    ViewOffsetX := ViewOffsetX + offsetX;
+    ViewOffsetY := ViewOffsetY + offsetY;
 
     Paint;
   end;
