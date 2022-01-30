@@ -17,9 +17,12 @@ type
   TAstroSimSpace = class(TCustomControl)
     private
       InitialAsteroidCount: Integer;
+      CenterX: Integer;
+      CenterY: Integer;
       ViewOffsetX: Integer;
       ViewOffsetY: Integer;
       ZoomFactor: Integer;
+      InverseZoom: Single;
 
     public
       ActiveAsteroidCount: Integer;
@@ -47,10 +50,14 @@ implementation
   begin
     InitialAsteroidCount := MAXIMUM_ASTEROID_COUNT;
 
+    CenterX := Width div 2;
+    CenterY := Height div 2;
+
     ViewOffsetX := 0;
     ViewOffsetY := 0;
 
     ZoomFactor := 1;
+    InverseZoom := 1.0 / ZoomFactor;
 
     for i := 1 to MAXIMUM_ASTEROID_COUNT do begin
       a := TAsteroid.Create;
@@ -136,13 +143,8 @@ implementation
     y: Integer;
     a: TAsteroid;
     zoomedRadius: Integer;
-    centerX: Integer;
-    centerY: Integer;
     Bitmap: TBitmap;
   begin
-    centerX := Width div 2;
-    centerY := Height div 2;
-
     Bitmap := TBitmap.Create;
     try
       { https://wiki.freepascal.org/Drawing_with_canvas }
@@ -154,9 +156,9 @@ implementation
       for i := 1 to InitialAsteroidCount do begin
         a := Asteroids[i];
         if (a.IsActive) then begin
-          x := ((Round(a.X) - centerX) div ZoomFactor) + centerX + ViewOffsetX;
-          y := ((Round(a.Y) - centerY) div ZoomFactor) + centerY + ViewOffsetY;
-          zoomedRadius := Max(2, a.Radius div ZoomFactor);
+          x := Round((a.X - CenterX) * InverseZoom) + CenterX + ViewOffsetX;
+          y := Round((a.Y - CenterY) * InverseZoom) + CenterY + ViewOffsetY;
+          zoomedRadius := Max(2, Ceil(a.Radius * InverseZoom));
           Bitmap.Canvas.Ellipse(x - zoomedRadius, y - zoomedRadius, x + zoomedRadius, y + zoomedRadius);
         end;
       end;
@@ -172,18 +174,13 @@ implementation
   procedure TAstroSimSpace.MouseDown(Sender: TObject;
     Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   var
-    centerX: Integer;
-    centerY: Integer;
     offsetX: Integer;
     offsetY: Integer;
   begin
     { Re-center the space on the clicked point. }
 
-    centerX := Width div 2;
-    centerY := Height div 2;
-
-    offsetX := centerX - X;
-    offsetY := centerY - Y;
+    offsetX := CenterX - X;
+    offsetY := CenterY - Y;
 
     ViewOffsetX := ViewOffsetX + offsetX;
     ViewOffsetY := ViewOffsetY + offsetY;
@@ -195,6 +192,7 @@ implementation
     WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
   begin
     ZoomFactor := Max(ZoomFactor - (WheelDelta div ZOOM_DIVISOR), 1);
+    InverseZoom := 1.0 / ZoomFactor;
 
     Paint;
   end;
