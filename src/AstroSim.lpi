@@ -14,11 +14,10 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="1"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="2"/>
+      <MinorVersionNr Value="2"/>
+      <BuildNr Value="13"/>
       <CharSet Value="04E6"/>
-      <StringTable Comments="MIT License.  https://opensource.org/licenses/MIT" CompanyName="Rick Rutt" FileDescription="Astronomical Simulation" LegalCopyright="Copyright 2022 Rick Rutt" ProductName="Astronomical Simulation" ProductVersion="1.1.1+20220128"/>
+      <StringTable Comments="MIT License.  https://opensource.org/licenses/MIT" CompanyName="Rick Rutt" FileDescription="Astronomical Simulation" LegalCopyright="Copyright 2022 Rick Rutt" ProductName="Astronomical Simulation" ProductVersion="1.2.0+20220129"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>

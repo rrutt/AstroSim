@@ -5,7 +5,7 @@ unit Asteroid;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, Math, SysUtils;
 
 type
   TAsteroid = Class
@@ -80,7 +80,7 @@ implementation
       VelocityX := VelocityX / Mass;
       VelocityY := VelocityY / Mass;
 
-      Radius := Round(Sqrt(Mass) + 0.5);
+      Radius := Ceil(Sqrt(Mass));
 
       OtherAsteroid.IsActive := false;
     end;
