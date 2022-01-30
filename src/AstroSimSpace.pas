@@ -76,8 +76,8 @@ implementation
   begin
     InitialAsteroidCount := AsteroidCount;
 
-    ViewOffsetX := 0;
-    ViewOffsetY := 0;
+    ViewOffsetX := CenterX;
+    ViewOffsetY := CenterY;
 
     for i := 1 to InitialAsteroidCount do begin
       Asteroids[i].Randomize(Width, Height);
@@ -156,8 +156,8 @@ implementation
       for i := 1 to InitialAsteroidCount do begin
         a := Asteroids[i];
         if (a.IsActive) then begin
-          x := Round((a.X - CenterX) * InverseZoom) + CenterX + ViewOffsetX;
-          y := Round((a.Y - CenterY) * InverseZoom) + CenterY + ViewOffsetY;
+          x := Trunc(a.X * InverseZoom) + ViewOffsetX;
+          y := Trunc(a.Y * InverseZoom) + ViewOffsetY;
           zoomedRadius := Max(2, Ceil(a.Radius * InverseZoom));
           Bitmap.Canvas.Ellipse(x - zoomedRadius, y - zoomedRadius, x + zoomedRadius, y + zoomedRadius);
         end;

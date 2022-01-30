@@ -21,7 +21,7 @@ type
       AccelerationX: Single;
       AccelerationY: Single;
 
-      procedure Randomize(const MaxX: Integer; const MaxY: Integer);
+      procedure Randomize(const Width: Integer; const Height: Integer);
       function MergeIfAdjacent(const OtherAsteroid: TAsteroid): Boolean;
       procedure Accelerate(const OtherAsteroid: TAsteroid);
       procedure Move;
@@ -33,15 +33,15 @@ implementation
     INITIAL_MASS = 4.0;
     GRAVITY = 10.0;
 
-  procedure TAsteroid.Randomize(const MaxX: Integer; const MaxY: Integer);
+  procedure TAsteroid.Randomize(const Width: Integer; const Height: Integer);
   begin
     IsActive := true;
 
     Radius := INITIAL_RADIUS;
     Mass := INITIAL_MASS;
 
-    X := 1.0 + Random(MaxX - 1);
-    Y := 1.0 + Random(MaxY - 1);
+    X := 1.0 + Random(Width - 1) - (Width div 2);
+    Y := 1.0 + Random(Height - 1) - (Height div 2);
 
     VelocityX := 0.0;
     VelocityY := 0.0;
