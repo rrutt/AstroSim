@@ -5,17 +5,24 @@ interface
 {$mode objfpc}{$H+}
 
 uses
-  Classes, SysUtils, Controls, Graphics, LCLType,
+  Classes, SysUtils, Controls, Graphics, LCLType, Math,
   Asteroid;
 
 const
   MAXIMUM_ASTEROID_COUNT = 10000;
   DEFAULT_ASTEROID_COUNT = 10;
+  ZOOM_DIVISOR = 120;
 
 type
   TAstroSimSpace = class(TCustomControl)
     private
       InitialAsteroidCount: Integer;
+      CenterX: Integer;
+      CenterY: Integer;
+      ViewOffsetX: Integer;
+      ViewOffsetY: Integer;
+      ZoomFactor: Integer;
+      InverseZoom: Single;
 
     public
       ActiveAsteroidCount: Integer;
@@ -27,6 +34,8 @@ type
       procedure Paint; override;
       procedure MouseDown(Sender: TObject; {%H-}Button: TMouseButton;
         {%H-}Shift: TShiftState; X, Y: Integer); overload;
+      Procedure MouseWheel(Sender: TObject; {%H-}Shift: TShiftState;
+        WheelDelta: Integer; {%H-}MousePos: TPoint; var {%H-}Handled: Boolean);
   end;
 
 implementation
@@ -41,6 +50,15 @@ implementation
   begin
     InitialAsteroidCount := MAXIMUM_ASTEROID_COUNT;
 
+    CenterX := Width div 2;
+    CenterY := Height div 2;
+
+    ViewOffsetX := 0;
+    ViewOffsetY := 0;
+
+    ZoomFactor := 1;
+    InverseZoom := 1.0 / ZoomFactor;
+
     for i := 1 to MAXIMUM_ASTEROID_COUNT do begin
       a := TAsteroid.Create;
       Asteroids[i] := a;
@@ -49,6 +67,7 @@ implementation
     ActiveAsteroidCount := 0;
 
     OnMouseDown := @MouseDown;
+    OnMouseWheel := @MouseWheel;
   end;
 
   procedure TAstroSimSpace.Randomize(const AsteroidCount: Integer);
@@ -56,6 +75,9 @@ implementation
     i: Integer;
   begin
     InitialAsteroidCount := AsteroidCount;
+
+    ViewOffsetX := CenterX;
+    ViewOffsetY := CenterY;
 
     for i := 1 to InitialAsteroidCount do begin
       Asteroids[i].Randomize(Width, Height);
@@ -120,6 +142,7 @@ implementation
     x: Integer;
     y: Integer;
     a: TAsteroid;
+    zoomedRadius: Integer;
     Bitmap: TBitmap;
   begin
     Bitmap := TBitmap.Create;
@@ -133,9 +156,10 @@ implementation
       for i := 1 to InitialAsteroidCount do begin
         a := Asteroids[i];
         if (a.IsActive) then begin
-          x := Round(a.X);
-          y := Round(a.Y);
-          Bitmap.Canvas.Ellipse(x - a.Radius, y - a.Radius, x + a.Radius, y + a.Radius);
+          x := Trunc(a.X * InverseZoom) + ViewOffsetX;
+          y := Trunc(a.Y * InverseZoom) + ViewOffsetY;
+          zoomedRadius := Max(2, Ceil(a.Radius * InverseZoom));
+          Bitmap.Canvas.Ellipse(x - zoomedRadius, y - zoomedRadius, x + zoomedRadius, y + zoomedRadius);
         end;
       end;
 
@@ -150,28 +174,25 @@ implementation
   procedure TAstroSimSpace.MouseDown(Sender: TObject;
     Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   var
-    centerX: Integer;
-    centerY: Integer;
     offsetX: Integer;
     offsetY: Integer;
-    i: Integer;
-    a: TAsteroid;
   begin
     { Re-center the space on the clicked point. }
 
-    centerX := Width div 2;
-    centerY := Height div 2;
+    offsetX := CenterX - X;
+    offsetY := CenterY - Y;
 
-    offsetX := centerX - X;
-    offsetY := centerY - Y;
+    ViewOffsetX := ViewOffsetX + offsetX;
+    ViewOffsetY := ViewOffsetY + offsetY;
 
-    for i := 1 to InitialAsteroidCount do begin
-      a := Asteroids[i];
-      if (a.IsActive) then begin
-        a.X := a.X + offsetX;
-        a.Y := a.Y + offsetY;
-      end;
-    end;
+    Paint;
+  end;
+
+  Procedure TAstroSimSpace.MouseWheel(Sender: TObject; Shift: TShiftState;
+    WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  begin
+    ZoomFactor := Max(ZoomFactor - (WheelDelta div ZOOM_DIVISOR), 1);
+    InverseZoom := 1.0 / ZoomFactor;
 
     Paint;
   end;

@@ -1,6 +1,6 @@
 # Astronomical Simulation
 
-_Version 1.1.0+20220126  ([Version Release Notes](#ReleaseNotes))_ 
+_Version 1.2.0+20220130  ([Version Release Notes](#ReleaseNotes))_ 
 
 **Astronomical Simulation** is an open source n-body gravitational simulation.
 
@@ -61,6 +61,12 @@ Then click the **Randomize** button to enlarge the graphic simulation area to ma
 
 Click on any point within the simulation area to cause the visible window into the simulation space to be centered on that point.
 
+### Zooming the Visible Area Out and In
+
+Zoom out the view of the simulation space by pulling the mouse wheel toward you.
+
+Zoom back in by pushing the mouse wheel away from you.
+
 ### Simulation Notes
 
 Initial experimentation with the **AstroSim** program seems to indicate that _smaller_ numbers of asteroids produced more interesting results than larger numbers.
@@ -90,6 +96,10 @@ Then rebuild the executable using the **Run | Build** menu item (or using the sh
 
 <a name="ReleaseNotes"></a>
 ## Release Notes
+
+### Version 1.2.0
+
+Added ability to zoom the simulation view space out and in via the mouse wheel.
 
 ### Version 1.1.0
 
