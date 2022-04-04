@@ -1,6 +1,6 @@
 # Astronomical Simulation
 
-_Version 1.2.0+20220130  ([Version Release Notes](#ReleaseNotes))_ 
+_Version 1.2.1+20220404  ([Version Release Notes](#ReleaseNotes))_ 
 
 **Astronomical Simulation** is an open source n-body gravitational simulation.
 
@@ -21,7 +21,9 @@ The software is a self-contained executable program, written in **[Free Pascal](
 The **[Lazarus Integrated Development Environment](https://www.lazarus-ide.org/)** was used to develop the program.
 (Both Free Pascal and the Lazarus IDE are free open-source software products.) 
 
-## Downloading the Program
+## Downloading and Running the Program
+
+### Microsoft Windows
 
 You can run the Astronomical Simulation program on Microsoft Windows as follows:
 
@@ -29,9 +31,21 @@ You can run the Astronomical Simulation program on Microsoft Windows as follows:
 
 - To uninstall the program, simply delete the **AstroSim.exe** file.
 
-## Using the Program
+### Ubuntu Linux
 
-Double-click the downloaded copy of **AstroSim.exe** to start the simulation.
+You can run the Astronomical Simulation program on Ubuntu Linux (and presumably other Linux distributions) as follows:
+
+- Download the **AstroSim** binary executable file (with no file extension) from the **bin** sub-folder from this GitHub.com page.
+
+- Ensure the **AstroSim** file has the executable permission.  From a Files window, right-click the file, select Properties, and use the Permissions tab to enable the Execute permission.  To do this in a Terminal window, use the following command:
+  
+    chmod +x AstroSim
+
+- To uninstall the program, simply delete the **AstroSim** binary executable file.
+
+### Running the Program
+
+Double-click the downloaded copy of **AstroSim.exe** (on Windows) or **AstroSim** (on Linux) to start the simulation.
 
 When the program starts it displays the **Astronomical Simulation** Main Form.
 
@@ -93,9 +107,13 @@ When ready to create a release executable, the file size can be significantly re
 Clear the check-mark from the **Generate info for the debugger** option and then click the **OK** button.
 Then rebuild the executable using the **Run | Build** menu item (or using the shortcut key-stroke _**Shift-F9**_).
 
-
 <a name="ReleaseNotes"></a>
+
 ## Release Notes
+
+### Version 1.2.1
+
+Compiled on Ubuntu Linux version 20.04.4 LTS and included resulting **AstroSim** executable file in the **bin** sub-folder.
 
 ### Version 1.2.0
 
