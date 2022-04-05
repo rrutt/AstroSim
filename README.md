@@ -1,6 +1,6 @@
 # Astronomical Simulation
 
-_Version 1.2.1+20220404  ([Version Release Notes](#ReleaseNotes))_ 
+_Version 1.2.2+20220405  ([Version Release Notes](#ReleaseNotes))_ 
 
 **Astronomical Simulation** is an open source n-body gravitational simulation.
 
@@ -16,7 +16,7 @@ Alternately some or most of the asteroids may be _ejected_ via a _gravitational 
 
 ## About the Software
 
-The software is a self-contained executable program, written in **[Free Pascal](https://www.freepascal.org/)**, that runs on Microsoft Windows.
+The software is a self-contained executable program, written in **[Free Pascal](https://www.freepascal.org/)**, that runs on Microsoft Windows or Ubuntu Linux (and presumably other Linux distributions).
 (No separate run-time environment is required to run the program.)
 The **[Lazarus Integrated Development Environment](https://www.lazarus-ide.org/)** was used to develop the program.
 (Both Free Pascal and the Lazarus IDE are free open-source software products.) 
@@ -110,6 +110,10 @@ Then rebuild the executable using the **Run | Build** menu item (or using the sh
 <a name="ReleaseNotes"></a>
 
 ## Release Notes
+
+### Version 1.2.2
+
+Show the Product Version on the main form title bar.
 
 ### Version 1.2.1
 

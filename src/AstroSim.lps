@@ -20,8 +20,7 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="34"/>
-        <CursorPos X="18" Y="48"/>
+        <CursorPos X="89" Y="8"/>
         <UsageCount Value="232"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -29,18 +28,18 @@
         <Filename Value="AstroSimSpace.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="133"/>
-        <CursorPos X="21" Y="160"/>
+        <CursorPos X="11" Y="9"/>
         <UsageCount Value="225"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="Asteroid.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="4"/>
         <CursorPos X="56" Y="18"/>
         <UsageCount Value="80"/>
+        <Loaded Value="True"/>
       </Unit3>
     </Units>
     <JumpHistory Count="2" HistoryIndex="1">
