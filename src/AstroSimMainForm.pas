@@ -5,7 +5,7 @@ unit AstroSimMainForm;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Classes, SysUtils, FileInfo, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Spin, AstroSimSpace;
 
 type
@@ -42,7 +42,17 @@ implementation
     //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
 
 procedure TAstroSimMainForm.FormCreate(Sender: TObject);
+var
+  FileVerInfo: TFileVersionInfo;
 begin
+  FileVerInfo := TFileVersionInfo.Create(nil);
+  try
+    FileVerInfo.ReadFileInfo;
+    Caption := Caption + '  (Version ' + FileVerInfo.VersionStrings.Values['ProductVersion'] + ')';
+  finally
+    FileVerInfo.Free;
+  end;
+
   Timer1.Interval := 10; // milliseconds
   Timer1.Enabled := false;
 

@@ -8,8 +8,7 @@
       <Unit0>
         <Filename Value="AstroSim.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="11" Y="17"/>
+        <CursorPos X="19" Y="15"/>
         <UsageCount Value="232"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -19,18 +18,21 @@
         <ComponentName Value="AstroSimMainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="31" Y="64"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="34"/>
+        <CursorPos X="18" Y="48"/>
         <UsageCount Value="232"/>
+        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="AstroSimSpace.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="139"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="133"/>
         <CursorPos X="21" Y="160"/>
         <UsageCount Value="225"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="Asteroid.pas"/>
@@ -41,7 +43,16 @@
         <UsageCount Value="80"/>
       </Unit3>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="2" HistoryIndex="1">
+      <Position1>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <Caret Line="51" Column="26" TopLine="31"/>
+      </Position1>
+      <Position2>
+        <Filename Value="AstroSimMainForm.pas"/>
+        <Caret Line="9" Column="12"/>
+      </Position2>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>
