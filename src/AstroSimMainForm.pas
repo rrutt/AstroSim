@@ -8,6 +8,9 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Spin, AstroSimSpace;
 
+const
+  PRODUCT_VERSION = '1.2.2+20220405';
+
 type
 
   { TAstroSimMainForm }
@@ -38,11 +41,13 @@ implementation
 {$R *.lfm}
 
   var
-    Space: TAstroSimSpace;
-    //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
+   Space: TAstroSimSpace;
+   //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
 
 procedure TAstroSimMainForm.FormCreate(Sender: TObject);
 begin
+  Caption := Caption + '  (Version ' + PRODUCT_VERSION + ')';
+
   Timer1.Interval := 10; // milliseconds
   Timer1.Enabled := false;
 
