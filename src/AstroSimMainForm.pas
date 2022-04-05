@@ -5,8 +5,11 @@ unit AstroSimMainForm;
 interface
 
 uses
-  Classes, SysUtils, FileInfo, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   StdCtrls, Spin, AstroSimSpace;
+
+const
+  PRODUCT_VERSION = '1.2.2+20220405';
 
 type
 
@@ -38,20 +41,12 @@ implementation
 {$R *.lfm}
 
   var
-    Space: TAstroSimSpace;
-    //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
+   Space: TAstroSimSpace;
+   //ResourceDirectory: UTF8String {$IFNDEF MACOSX} = '../res/' {$ENDIF};
 
 procedure TAstroSimMainForm.FormCreate(Sender: TObject);
-var
-  FileVerInfo: TFileVersionInfo;
 begin
-  FileVerInfo := TFileVersionInfo.Create(nil);
-  try
-    FileVerInfo.ReadFileInfo;
-    Caption := Caption + '  (Version ' + FileVerInfo.VersionStrings.Values['ProductVersion'] + ')';
-  finally
-    FileVerInfo.Free;
-  end;
+  Caption := Caption + '  (Version ' + PRODUCT_VERSION + ')';
 
   Timer1.Interval := 10; // milliseconds
   Timer1.Enabled := false;
