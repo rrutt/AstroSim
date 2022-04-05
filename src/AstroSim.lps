@@ -43,7 +43,7 @@
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="..\..\..\..\..\usr\share\fpcsrc\3.0.4\packages\fcl-res\src\resource.pp"/>
+        <Filename Value="D:\usr\share\fpcsrc\3.0.4\packages\fcl-res\src\resource.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="262"/>
         <CursorPos X="14" Y="277"/>
