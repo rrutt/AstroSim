@@ -33,7 +33,7 @@ type
       procedure EraseBackground({%H-}DC: HDC); override;
       procedure Paint; override;
       procedure AddNewAsteroid(const X: Integer; const Y: Integer);
-      procedure MouseDown(Sender: TObject; {%H-}Button: TMouseButton;
+      procedure MouseDown(Sender: TObject; Button: TMouseButton;
         {%H-}Shift: TShiftState; X, Y: Integer); overload;
       Procedure MouseWheel(Sender: TObject; {%H-}Shift: TShiftState;
         WheelDelta: Integer; {%H-}MousePos: TPoint; var {%H-}Handled: Boolean);
