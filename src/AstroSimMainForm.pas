@@ -9,7 +9,7 @@ uses
   StdCtrls, Spin, AstroSimSpace;
 
 const
-  PRODUCT_VERSION = '1.2.2+20220405';
+  PRODUCT_VERSION = '1.2.3+20220406';
 
 type
 
@@ -135,6 +135,8 @@ procedure TAstroSimMainForm.ButtonStepClick(Sender: TObject);
 begin
   Space.Iterate;
   Space.Paint;
+
+  LabelAsteroidCount.Caption := Format('%d', [Space.ActiveAsteroidCount]);
 end;
 
 end.
