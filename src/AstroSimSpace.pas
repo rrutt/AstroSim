@@ -5,7 +5,7 @@ interface
 {$mode objfpc}{$H+}
 
 uses
-  Classes, SysUtils, Controls, Graphics, LCLType, Math,
+  Classes, SysUtils, Controls, Dialogs, Graphics, LCLType, Math,
   Asteroid;
 
 const
@@ -32,6 +32,7 @@ type
       procedure Iterate;
       procedure EraseBackground({%H-}DC: HDC); override;
       procedure Paint; override;
+      procedure AddNewAsteroid(const X: Integer; const Y: Integer);
       procedure MouseDown(Sender: TObject; {%H-}Button: TMouseButton;
         {%H-}Shift: TShiftState; X, Y: Integer); overload;
       Procedure MouseWheel(Sender: TObject; {%H-}Shift: TShiftState;
@@ -171,19 +172,58 @@ implementation
     inherited Paint;
   end;
 
+  procedure TAstroSimSpace.AddNewAsteroid(const X: Integer; const Y: Integer);
+  var
+    reactivatedAsteroid: Boolean;
+    i: Integer;
+    ai: TAsteroid;
+  begin
+    reactivatedAsteroid := false;
+
+    //for i := 1 to InitialAsteroidCount do begin
+    //  ai := Asteroids[i];
+    //  if (not ai.IsActive) then begin
+    //    ai.Initialize(X, Y);
+    //    Inc(ActiveAsteroidCount);
+    //    reactivatedAsteroid := true;
+    //  end;
+    //end;
+
+    if (not reactivatedAsteroid) then begin
+      if (InitialAsteroidCount < MAXIMUM_ASTEROID_COUNT) then begin
+        i := InitialAsteroidCount + 1;
+        ai := Asteroids[i];
+        ai.Initialize(X, Y);
+
+        Inc(InitialAsteroidCount);
+        Inc(ActiveAsteroidCount);
+      end else begin
+        ShowMessage(Format('The maximum number of Asteroid slots (%d) has been reached.', [MAXIMUM_ASTEROID_COUNT]));
+      end;
+    end;
+  end;
+
   procedure TAstroSimSpace.MouseDown(Sender: TObject;
     Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   var
     offsetX: Integer;
     offsetY: Integer;
+    newX: Integer;
+    newY: Integer;
   begin
-    { Re-center the space on the clicked point. }
-
     offsetX := CenterX - X;
     offsetY := CenterY - Y;
 
-    ViewOffsetX := ViewOffsetX + offsetX;
-    ViewOffsetY := ViewOffsetY + offsetY;
+    if (Button = mbLeft) then begin
+      { Re-center the space on the clicked point. }
+      ViewOffsetX := ViewOffsetX + offsetX;
+      ViewOffsetY := ViewOffsetY + offsetY;
+    end else if (Button = mbRight) then begin
+      newX := Trunc((X - ViewOffsetX) * ZoomFactor);
+      newY := Trunc((Y - ViewOffsetY) * ZoomFactor);
+
+      AddNewAsteroid(newX, newY);
+    end;
 
     Paint;
   end;

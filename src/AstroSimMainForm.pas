@@ -9,7 +9,7 @@ uses
   StdCtrls, Spin, AstroSimSpace;
 
 const
-  PRODUCT_VERSION = '1.2.3+20220406';
+  PRODUCT_VERSION = '1.3.0+20220406';
 
 type
 
@@ -51,7 +51,7 @@ begin
   Timer1.Interval := 10; // milliseconds
   Timer1.Enabled := false;
 
-  SpinEditAsteroidCount.MinValue := 5;
+  SpinEditAsteroidCount.MinValue := 1;
   SpinEditAsteroidCount.Increment := 5;
   SpinEditAsteroidCount.MaxValue := MAXIMUM_ASTEROID_COUNT;
   SpinEditAsteroidCount.Value := DEFAULT_ASTEROID_COUNT;

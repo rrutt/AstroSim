@@ -22,6 +22,7 @@ type
       AccelerationY: Single;
 
       procedure Randomize(const Width: Integer; const Height: Integer);
+      procedure Initialize(const newX: Integer; const newY: Integer);
       function MergeIfAdjacent(const OtherAsteroid: TAsteroid): Boolean;
       procedure Accelerate(const OtherAsteroid: TAsteroid);
       procedure Move;
@@ -48,6 +49,23 @@ implementation
 
     AccelerationX := 0.0;
     AccelerationY := 0.0;
+  end;
+
+  procedure TAsteroid.Initialize(const newX: Integer; const newY: Integer);
+  begin
+    Radius := INITIAL_RADIUS;
+    Mass := INITIAL_MASS;
+
+    X := newX;
+    Y := newY;
+
+    VelocityX := 0.0;
+    VelocityY := 0.0;
+
+    AccelerationX := 0.0;
+    AccelerationY := 0.0;
+
+    IsActive := true;
   end;
 
   function TAsteroid.MergeIfAdjacent(const OtherAsteroid: TAsteroid): Boolean;
