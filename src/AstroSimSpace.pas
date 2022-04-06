@@ -180,14 +180,14 @@ implementation
   begin
     reactivatedAsteroid := false;
 
-    //for i := 1 to InitialAsteroidCount do begin
-    //  ai := Asteroids[i];
-    //  if (not ai.IsActive) then begin
-    //    ai.Initialize(X, Y);
-    //    Inc(ActiveAsteroidCount);
-    //    reactivatedAsteroid := true;
-    //  end;
-    //end;
+    for i := 1 to InitialAsteroidCount do begin
+      ai := Asteroids[i];
+      if (not reactivatedAsteroid) and (not ai.IsActive) then begin
+        ai.Initialize(X, Y);
+        Inc(ActiveAsteroidCount);
+        reactivatedAsteroid := true;
+      end;
+    end;
 
     if (not reactivatedAsteroid) then begin
       if (InitialAsteroidCount < MAXIMUM_ASTEROID_COUNT) then begin
