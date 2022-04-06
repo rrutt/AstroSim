@@ -1,6 +1,6 @@
 # Astronomical Simulation
 
-_Version 1.2.2+20220405  ([Version Release Notes](#ReleaseNotes))_ 
+_Version 1.2.3+20220406  ([Version Release Notes](#ReleaseNotes))_ 
 
 **Astronomical Simulation** is an open source n-body gravitational simulation.
 
@@ -110,6 +110,10 @@ Then rebuild the executable using the **Run | Build** menu item (or using the sh
 <a name="ReleaseNotes"></a>
 
 ## Release Notes
+
+### Version 1.2.3
+
+Update current Asteroid count when using the **Step** button.
 
 ### Version 1.2.2
 
