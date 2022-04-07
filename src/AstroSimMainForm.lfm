@@ -7,7 +7,7 @@ object AstroSimMainForm: TAstroSimMainForm
   ClientHeight = 550
   ClientWidth = 750
   OnCreate = FormCreate
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.6.0'
   Visible = True
   object ButtonRandomize: TButton
     Left = 8
@@ -82,9 +82,9 @@ object AstroSimMainForm: TAstroSimMainForm
   end
   object Label1: TLabel
     Left = 488
-    Height = 20
-    Top = 8
-    Width = 84
+    Height = 16
+    Top = 16
+    Width = 104
     Caption = '# Asteroids:'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
@@ -97,10 +97,10 @@ object AstroSimMainForm: TAstroSimMainForm
     ParentFont = False
   end
   object LabelAsteroidCount: TLabel
-    Left = 664
-    Height = 20
-    Top = 8
-    Width = 139
+    Left = 672
+    Height = 16
+    Top = 16
+    Width = 167
     Caption = 'LabelAsteroidCount'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
@@ -113,8 +113,8 @@ object AstroSimMainForm: TAstroSimMainForm
     ParentFont = False
   end
   object SpinEditAsteroidCount: TSpinEdit
-    Left = 576
-    Height = 28
+    Left = 592
+    Height = 33
     Hint = 'Initial Asteroid Count'
     Top = 8
     Width = 72
@@ -127,7 +127,7 @@ object AstroSimMainForm: TAstroSimMainForm
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 24
-    Top = 48
+    left = 24
+    top = 48
   end
 end
