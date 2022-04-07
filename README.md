@@ -1,6 +1,6 @@
 # Astronomical Simulation
 
-_Version 1.2.3+20220406  ([Version Release Notes](#ReleaseNotes))_ 
+_Version 1.3.0+20220406  ([Version Release Notes](#ReleaseNotes))_ 
 
 **Astronomical Simulation** is an open source n-body gravitational simulation.
 
@@ -75,6 +75,12 @@ Then click the **Randomize** button to enlarge the graphic simulation area to ma
 
 Click on any point within the simulation area to cause the visible window into the simulation space to be centered on that point.
 
+### Adding a New Asteroid to the Simulation Space
+
+Right-click with the mouse to add a new Asteroid.
+
+Use several successive right-clicks to add multiple nearby Asteroids that can _coalesce_ into a single Asteroid with larger mass. 
+
 ### Zooming the Visible Area Out and In
 
 Zoom out the view of the simulation space by pulling the mouse wheel toward you.
@@ -110,6 +116,10 @@ Then rebuild the executable using the **Run | Build** menu item (or using the sh
 <a name="ReleaseNotes"></a>
 
 ## Release Notes
+
+### Version 1.3.0
+
+Right-click adds a new asteroid to the simulation space.
 
 ### Version 1.2.3
 
