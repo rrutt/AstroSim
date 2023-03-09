@@ -76,6 +76,8 @@ implementation
     distanceSquared: Single;
     r: Single;
     rSquared: Single;
+    combinedMomentumX: Single;
+    combinedMomentumY: Single;
     isAdjacent: Boolean;
   begin
     dx := OtherAsteroid.X - X;
@@ -90,14 +92,13 @@ implementation
       X := (X + OtherAsteroid.X) / 2;
       Y := (Y + OtherAsteroid.Y) / 2;
 
-      // Combine momentum = Mass * Velocity.
-      VelocityX := (VelocityX * Mass) + (OtherAsteroid.VelocityX * OtherAsteroid.Mass);
-      VelocityY := (VelocityY * Mass) + (OtherAsteroid.VelocityY * OtherAsteroid.Mass);
+      combinedMomentumX := (VelocityX * Mass) + (OtherAsteroid.VelocityX * OtherAsteroid.Mass);
+      combinedMomentumY := (VelocityY * Mass) + (OtherAsteroid.VelocityY * OtherAsteroid.Mass);
 
       Mass := Mass + OtherAsteroid.Mass;
 
-      VelocityX := VelocityX / Mass;
-      VelocityY := VelocityY / Mass;
+      VelocityX := combinedMomentumX / Mass;
+      VelocityY := combinedMomentumY / Mass;
 
       Radius := Ceil(Sqrt(Mass));
 
